@@ -8,11 +8,12 @@
 
 			body {
 				font-family: Helvetiva, sans-serif;
+				font-size: 13px;
 				padding: 10px;
 			}
 
 			div {
-				padding: 5px;
+				padding: 7px;
 			}
 
 			div:not(:first-child) {
@@ -40,7 +41,7 @@
 		?>
 
 		<div>
-			<h3>{{ $thread->title }}</h3>
+			<h4>{{ $thread->title }}</h4>
 			<p>{{ $thread->mails()->count() }} messages</p>
 			<p>Last from {{ $latest->contact->printableName() }}, {{ $latest->printableDate() }}</p>
 		</div>
