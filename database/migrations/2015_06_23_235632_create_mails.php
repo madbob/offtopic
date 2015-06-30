@@ -12,6 +12,7 @@ class CreateMails extends Migration
 			$table->integer('thread_id');
 			$table->integer('contact_id');
 			$table->string('message_id', 100);
+			$table->string('reply_to', 100);
 			$table->timestamps();
 		});
 	}

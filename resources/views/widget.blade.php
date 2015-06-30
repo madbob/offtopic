@@ -41,7 +41,8 @@
 
 		<div>
 			<h3>{{ $thread->title }}</h3>
-			<p><span class="name">{{ $latest->contact->printableName() }}</span><span class="date">{{ $latest->printableDate() }}</span></p>
+			<p>{{ $thread->mails()->count() }} messages</p>
+			<p>Last from {{ $latest->contact->printableName() }}, {{ $latest->printableDate() }}</p>
 		</div>
 		@endforeach
 	</body>

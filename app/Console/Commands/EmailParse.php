@@ -35,14 +35,10 @@ class EmailParse extends Command
 		if ($list === false)
 			return;
 
-		$reference = mailparse_rfc822_parse_addresses($list);
-		$reference = $reference[count($reference) - 1];
-		$l = MailingList::where('address', '=', $reference['address'])->first();
-		if ($l == null) {
-			$l = new MailingList();
-			$l->address = $reference['address'];
-			$l->save();
-		}
+		$message_id = $parser->getHeader('message-id');
+		$m = Mail::where('message_id', '=', $message_id)->first();
+		if ($m != null)
+			return;
 
 		$from = $parser->getHeader('from');
 		$reference = mailparse_rfc822_parse_addresses($from);
@@ -54,25 +50,45 @@ class EmailParse extends Command
 			$c->save();
 		}
 
-		$thread_id = -1;
 		$previous = $parser->getHeader('in-reply-to');
-		if ($previous != null) {
-			$reference = Mail::where('message_id', '=', $previous)->first();
-			if ($reference != null)
-				$thread_id = $reference->thread_id;
-		}
-		if ($thread_id == -1) {
-			$t = new Thread();
-			$t->list_id = $l->id;
+
+		$m = Mail::where('reply_to', '=', $message_id)->first();
+		if ($m != null) {
+			$t = Thread::find($m->thread_id);
 			$t->title = $parser->getHeader('subject');
 			$t->save();
 			$thread_id = $t->id;
+		}
+		else {
+			$reference = mailparse_rfc822_parse_addresses($list);
+			$reference = $reference[count($reference) - 1];
+			$l = MailingList::where('address', '=', $reference['address'])->first();
+			if ($l == null) {
+				$l = new MailingList();
+				$l->address = $reference['address'];
+				$l->save();
+			}
+
+			$thread_id = -1;
+			if ($previous != null) {
+				$reference = Mail::where('message_id', '=', $previous)->first();
+				if ($reference != null)
+					$thread_id = $reference->thread_id;
+			}
+			if ($thread_id == -1) {
+				$t = new Thread();
+				$t->list_id = $l->id;
+				$t->title = $parser->getHeader('subject');
+				$t->save();
+				$thread_id = $t->id;
+			}
 		}
 
 		$mail = new Mail();
 		$mail->contact_id = $c->id;
 		$mail->thread_id = $thread_id;
-		$mail->message_id = $parser->getHeader('message-id');
+		$mail->message_id = $message_id;
+		$mail->reply_to = $previous;
 		$mail->save();
 	}
 }
