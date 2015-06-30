@@ -9,6 +9,7 @@ class CreateThreads extends Migration
 	{
 		Schema::create('threads', function (Blueprint $table) {
 			$table->increments('id');
+			$table->integer('list_id');
 			$table->string('title', 100);
 			$table->timestamps();
 		});

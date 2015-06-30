@@ -63,6 +63,7 @@ class EmailParse extends Command
 		}
 		if ($thread_id == -1) {
 			$t = new Thread();
+			$t->list_id = $l->id;
 			$t->title = $parser->getHeader('subject');
 			$t->save();
 			$thread_id = $t->id;

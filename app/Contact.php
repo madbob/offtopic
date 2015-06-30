@@ -12,4 +12,12 @@ class Contact extends Model
 		$this->hasMany('App\Mail');
 	}
 
+	public function printableName()
+	{
+		if (empty($this->name))
+			return $this->mail;
+		else
+			return $this->name;
+	}
+
 }

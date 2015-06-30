@@ -1,0 +1,36 @@
+* {
+	margin: 0;
+	padding: 0;
+}
+
+body {
+	padding: 10%;
+	font-size: 15px;
+	font-family: monospace, sans-serif;
+}
+
+h3 {
+	margin-top: 20px;
+}
+
+p {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	line-height: 20px;
+}
+
+#contents {
+	float: left;
+	width: 70%;
+	box-sizing: border-box;
+	padding-right: 5%;
+}
+
+#sidebar {
+	float: left;
+	width: 30%;
+}
+
+#sidebar img {
+	width: 100%;
+}

@@ -44,7 +44,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -54,7 +54,10 @@
      id="layer1">
     <g
        id="g4168"
-       transform="matrix(0.99907695,0.0429564,-0.0429564,0.99907695,9.1561066,-8.1869747)">
+       transform="matrix(0.99907695,0.0429564,-0.0429564,0.99907695,9.1561066,-8.1869747)"
+       inkscape:export-filename="/home/madbob/projects/offtopic/offtopic/public/img/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          y="176.67561"
          x="147.64325"
@@ -82,7 +85,10 @@
     </g>
     <g
        id="g4164"
-       transform="matrix(0.99956915,-0.0293517,0.0293517,0.99956915,-8.397327,5.8503715)">
+       transform="matrix(0.99956915,-0.0293517,0.0293517,0.99956915,-8.397327,5.8503715)"
+       inkscape:export-filename="/home/madbob/projects/offtopic/offtopic/public/img/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          style="opacity:1;fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:5;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="rect4148"
@@ -110,7 +116,10 @@
     </g>
     <g
        id="g4160"
-       transform="matrix(0.99634478,0.08542289,-0.08542289,0.99634478,32.23042,-15.315517)">
+       transform="matrix(0.99634478,0.08542289,-0.08542289,0.99634478,32.23042,-15.315517)"
+       inkscape:export-filename="/home/madbob/projects/offtopic/offtopic/public/img/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
       <rect
          y="336.6756"
          x="147.64325"
@@ -142,7 +151,10 @@
        x="259"
        y="313.22696"
        id="text4156"
-       sodipodi:linespacing="125%"><tspan
+       sodipodi:linespacing="125%"
+       inkscape:export-filename="/home/madbob/projects/offtopic/offtopic/public/img/logo.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
          sodipodi:role="line"
          id="tspan4158"
          x="259"

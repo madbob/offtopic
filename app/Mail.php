@@ -9,12 +9,17 @@ class Mail extends Model
 
 	public function thread()
 	{
-		$this->belongsTo('App\Thread');
+		return $this->belongsTo('App\Thread');
 	}
 
 	public function contact()
 	{
-		$this->belongsTo('App\Contact');
+		return $this->belongsTo('App\Contact');
+	}
+
+	public function printableDate()
+	{
+		return $this->created_at->format('d/m/Y G:i:s');
 	}
 
 }

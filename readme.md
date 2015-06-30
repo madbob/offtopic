@@ -1,27 +1,35 @@
-## Laravel PHP Framework
+## OffTopic: a Web Widget for Mailing Lists
 
-[![Build Status](https://travis-ci.org/laravel/framework.svg)](https://travis-ci.org/laravel/framework)
-[![Total Downloads](https://poser.pugx.org/laravel/framework/d/total.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Stable Version](https://poser.pugx.org/laravel/framework/v/stable.svg)](https://packagist.org/packages/laravel/framework)
-[![Latest Unstable Version](https://poser.pugx.org/laravel/framework/v/unstable.svg)](https://packagist.org/packages/laravel/framework)
-[![License](https://poser.pugx.org/laravel/framework/license.svg)](https://packagist.org/packages/laravel/framework)
+## Install
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable, creative experience to be truly fulfilling. Laravel attempts to take the pain out of development by easing common tasks used in the majority of web projects, such as authentication, routing, sessions, queueing, and caching.
+git clone https://github.com/madbob/offtopic.git
+cd offtopic
+pecl install mailparse
+composer install
+cp .env.sample .env
+[edit the .env file accordly to your local settings]
+php artisan migrate
+php artisan key:generate
 
-Laravel is accessible, yet powerful, providing powerful tools needed for large, robust applications. A superb inversion of control container, expressive migration system, and tightly integrated unit testing support give you the tools you need to build any application with which you are tasked.
+To pipe mails incoming to your exim4 instance, put in the aliases file a line like this:
+offtopic@madbob.org : "| /usr/bin/php -q /var/www/offtopic/artisan --env=local parse"
+For further details about other mail servers, get a look here
+http://www.sitepoint.com/piping-emails-laravel-application/
 
-## Official Documentation
+Your nginx configuration should look like this:
 
-Documentation for the framework can be found on the [Laravel website](http://laravel.com/docs).
-
-## Contributing
-
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](http://laravel.com/docs/contributions).
-
-## Security Vulnerabilities
-
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell at taylor@laravel.com. All security vulnerabilities will be promptly addressed.
-
-### License
-
-The Laravel framework is open-sourced software licensed under the [MIT license](http://opensource.org/licenses/MIT)
+    server {
+     listen   80;
+     server_name  ot.madbob.org;
+     root   /var/www/offtopic/public/;
+     index  index.php index.html index.htm;
+     location / {
+      try_files $uri $uri/ /index.php?$query_string;
+     }
+     location ~ \.php$ {
+      try_files       $uri /index.php =404;
+      fastcgi_pass   unix:/var/run/php5-fpm.sock;
+      fastcgi_param  SCRIPT_FILENAME $document_root$fastcgi_script_name;
+      include        fastcgi_params;
+     }
+    }

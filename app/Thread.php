@@ -9,7 +9,7 @@ class Thread extends Model
 
 	public function mails()
 	{
-		$this->hasMany('App\Mail')->orderBy('created_at');
+		return $this->hasMany('App\Mail')->orderBy('created_at', 'desc');
 	}
 
 }
