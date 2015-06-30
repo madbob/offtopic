@@ -2,18 +2,18 @@
 
 ## Install
 
-git clone https://github.com/madbob/offtopic.git
-cd offtopic
-pecl install mailparse
-composer install
-cp .env.sample .env
-[edit the .env file accordly to your local settings]
-php artisan migrate
-php artisan key:generate
+    git clone https://github.com/madbob/offtopic.git
+    cd offtopic
+    pecl install mailparse
+    composer install
+    cp .env.sample .env
+    [edit the .env file accordly to your local settings]
+    php artisan migrate
+    php artisan key:generate
 
 To pipe mails incoming to your exim4 instance, put in the aliases file a line like this:
-offtopic@madbob.org : "| /usr/bin/php -q /var/www/offtopic/artisan --env=local parse"
-For further details about other mail servers, get a look here
+    offtopic@madbob.org : "| /usr/bin/php -q /var/www/offtopic/artisan --env=local parse"
+For further details about other mail servers, get a look here: 
 http://www.sitepoint.com/piping-emails-laravel-application/
 
 Your nginx configuration should look like this:

@@ -35,7 +35,7 @@
 				<h3>Who</h3>
 
 				<p>
-					This free service is implemented and operated by <a href="http://madbob.org/">Roberto Guido</a>. Code is available under the AGPLv3 license.
+					This free service is implemented and operated by <a href="http://madbob.org/">Roberto Guido</a>. Code is <a href="https://github.com/madbob/offtopic">available</a> under the AGPLv3 license.
 				</p>
 			</div>
 			<div id="sidebar">
