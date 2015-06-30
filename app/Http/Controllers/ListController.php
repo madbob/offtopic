@@ -4,9 +4,15 @@ namespace App\Http\Controllers;
 
 use App\MailingList;
 use App\Thread;
+use Config;
 
 class ListController extends Controller
 {
+
+	public function __construct()
+	{
+		Config::set('session.driver', 'array');
+	}
 
 	public function index()
 	{
