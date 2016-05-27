@@ -9,6 +9,7 @@ class Kernel extends ConsoleKernel
 {
 	protected $commands = [
 		\App\Console\Commands\Inspire::class,
+		\App\Console\Commands\ParseMaildir::class,
 		\App\Console\Commands\EmailParse::class,
 	];
 

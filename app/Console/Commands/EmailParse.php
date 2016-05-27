@@ -16,18 +16,24 @@ use App\Contact;
 
 class EmailParse extends Command
 {
-	protected $signature = 'parse';
+	protected $signature = 'parse {file?}';
 	protected $description = 'Parse incoming mail';
 
 	public function handle()
 	{
-		$fd = fopen("php://stdin", "r");
-		$rawEmail = "";
-		while (!feof($fd))
-			$rawEmail .= fread($fd, 1024);
+		$file = $this->argument('file');
+		if ($file == null) {
+			$fd = fopen("php://stdin", "r");
+			$rawEmail = "";
+			while (!feof($fd))
+				$rawEmail .= fread($fd, 1024);
 
-		fclose($fd);
-
+			fclose($fd);
+		}
+		else {
+			$rawEmail = file_get_contents($file);
+		}
+		
 		$parser = new Parser();
 		$parser->setText($rawEmail);
 
