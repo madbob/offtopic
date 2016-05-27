@@ -20,6 +20,13 @@ For further details about other mail servers, get a look here:
 http://www.sitepoint.com/piping-emails-laravel-application/
 
 
+Alternatively, if you do not manage system aliases or use a different MTA, you can run in cron a command like this
+
+    php artisan maildir /var/mail/madbob.org/offtopic/new/
+
+Pointing to the local Maildir of your account, to parse messages found there. Be aware: parsed files are deleted!
+
+
 Your nginx configuration should look like this:
 
     server {
@@ -37,3 +44,4 @@ Your nginx configuration should look like this:
       include        fastcgi_params;
      }
     }
+
