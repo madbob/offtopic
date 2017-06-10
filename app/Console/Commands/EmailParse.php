@@ -9,6 +9,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use PhpMimeMailParser\Parser;
+use Log;
 use App\MailingList;
 use App\Thread;
 use App\Mail;
@@ -21,6 +22,8 @@ class EmailParse extends Command
 
 	public function handle()
 	{
+		Log::debug('New mail incoming');
+
 		$file = $this->argument('file');
 		if ($file == null) {
 			$fd = fopen("php://stdin", "r");
@@ -38,13 +41,17 @@ class EmailParse extends Command
 		$parser->setText($rawEmail);
 
 		$list = $parser->getHeader('x-beenthere');
-		if ($list === false)
+		if ($list === false) {
+			Log::error('Missing x-beenthere header');
 			return;
+		}
 
 		$message_id = $parser->getHeader('message-id');
 		$m = Mail::where('message_id', '=', $message_id)->first();
-		if ($m != null)
+		if ($m != null) {
+			Log::error('Mail already indexed');
 			return;
+		}
 
 		$from = $parser->getHeader('from');
 		$reference = mailparse_rfc822_parse_addresses($from);
@@ -96,5 +103,7 @@ class EmailParse extends Command
 		$mail->message_id = $message_id;
 		$mail->reply_to = $previous;
 		$mail->save();
+
+		Log::debug('New mail indexed');
 	}
 }
