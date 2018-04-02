@@ -14,7 +14,7 @@
 
 To pipe mails incoming to your exim4 instance, put in the aliases file a line like this:
 
-    offtopic@madbob.org : "| /usr/bin/php -q /var/www/offtopic/artisan --env=local parse"
+    offtopic@informaticalibera.info : "| /usr/bin/php -q /var/www/offtopic/artisan --env=local parse"
 
 For further details about other mail servers, get a look here: 
 http://www.sitepoint.com/piping-emails-laravel-application/

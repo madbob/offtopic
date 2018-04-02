@@ -16,7 +16,7 @@
 				<h3>How</h3>
 
 				<p>
-					Subscribe (n.b. do not "invite", just "subscribe". OffTopic do not sends confirmation mails) the address <strong>offtopic@madbob.org</strong> to your mailing list, and in your website include an iframe such as
+					Subscribe (n.b. do not "invite", just "subscribe". OffTopic do not sends confirmation mails) the address <strong>offtopic@informaticalibera.info</strong> to your mailing list, and in your website include an iframe such as
 					<pre><?php echo htmlentities('<iframe src="http://ot.madbob.org/w/$the_mail_address_of_your_mailing_list"></iframe>') ?></pre>
 				</p>
 
